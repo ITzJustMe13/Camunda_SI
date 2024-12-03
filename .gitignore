@@ -22,3 +22,11 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+.idea
+Camunda/.idea
+Camunda/.mvn
+.mvn
+Camunda/.mvn/maven.config
+Camunda/.mvn/jvm.config
+Camunda/src/main/java/org/example/env/.env
