@@ -5,6 +5,7 @@ import io.camunda.zeebe.client.api.worker.JobWorker;
 import io.camunda.zeebe.client.impl.oauth.OAuthCredentialsProvider;
 import io.camunda.zeebe.client.impl.oauth.OAuthCredentialsProviderBuilder;
 import org.example.handler.NotificationHandler;
+import org.example.handler.PublishOppHandler;
 
 import java.time.Duration;
 
@@ -27,12 +28,18 @@ public class DadosOportunidades extends App{
                              .build()) {
             final JobWorker publishWorker =
                     client.newWorker()
+                            .jobType("publishOpp")
+                            .handler(new PublishOppHandler())
+                            .timeout(Duration.ofSeconds(10).toMillis())
+                            .open();
+            Thread.sleep(10000);
+            final JobWorker Notificationworker =
+                    client.newWorker()
                             .jobType("notification")
                             .handler(new NotificationHandler())
                             .timeout(Duration.ofSeconds(10).toMillis())
                             .open();
             Thread.sleep(10000);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
